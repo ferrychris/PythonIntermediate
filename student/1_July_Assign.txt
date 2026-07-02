@@ -1,0 +1,30 @@
+1. Python Module Is a Unique File that contais python statements that performs
+a particular function
+2. Python Package is a Folder with several modules coming together to 
+perform a complete task
+3. __ini__ is a folder that helps to expose or Easily Export the modules in a 
+Package for External USe.
+4. One Advantage of Using Packages is that, it helps Organize the 
+Project into Organized Folder and also for ease of use For External Consumption
+and management
+
+
+Question5.
+Hospital Package Structure:
+
+HOSPiTAL_Package/
+    hospital/
+        __ini__.py
+        patient.py
+        Billing.py
+        Doctors.py
+        Appointment.py
+        Pharmacy/
+            __ini__.py
+            dispense.py
+            Purchase.py
+            return.py
+            Sale.py
+    main.py
+
+    

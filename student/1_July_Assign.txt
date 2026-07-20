@@ -17,6 +17,7 @@ HOSPiTAL_Package/
         __ini__.py
         patient.py
         Billing.py
+        patientAilment.py
         Doctors.py
         Appointment.py
         Pharmacy/
@@ -26,5 +27,7 @@ HOSPiTAL_Package/
             return.py
             Sale.py
     main.py
-
+Reason - To ensure that the Project is Organized and also for ease of use For External Consumption
+and management. Further added Pharmacy folder as it is a Unique Module that perform specific task
+like dispensing, purchasing, returning and sale of drugs.
     

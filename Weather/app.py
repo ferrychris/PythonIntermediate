@@ -2,7 +2,7 @@ import requests
 import sqlite3
 import json
 
-URL = "https://data.api.xweather.com/conditions/new%20york%2C%20ny?client_id=WP7UJChbE9Dhw8LjWBrTj&{CLIENT_ID}"
+URL = "https://data.api.xweather.com/conditions/new%20york%2C%20ny?{CLIENT_ID}&{CLIENT_SECRET}"
 response = requests.get(URL)
 data= response.json()
 print(data)

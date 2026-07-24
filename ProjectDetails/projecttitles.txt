@@ -1,0 +1,30 @@
+Project Title- Todo List 
+Description- this script allows users to create, read, update, and delete tasks from a local database. 
+Problem Statement- users need a way to manage their daily tasks and keep track of their progress. 
+Features
+  1. Add Tasks 
+  2. View Tasks 
+  3. Update Tasks 
+  4. Delete Tasks 
+Users of the System - students, teachers, professionals, anyone who needs to manage their tasks.
+Data to be Stored-  task_id, task_description, task_status, task_todo_date, task_created_date, task_updated_date
+Database Table Design-
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  task_description TEXT,
+  task_status TEXT,
+  task_todo_date TEXT,
+  task_created_date DATE,
+  task_updated_date DATE
+
+Files To be Created
+- app.py -Handling the entire functionality of the app using Questionry...
+- todo.database
+-func.py -function for each crud ops (Global Test)
+-add_task.py -add (task description, task status, task todo date)
+-update_task.py -update (task description, task status, task todo date) 
+-delete_task.py -delete (ask)
+-view_task.py -view view(view)
+
+
+
+  

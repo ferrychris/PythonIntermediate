@@ -1,0 +1,24 @@
+
+main.py             Core game loop:
+                      - generate_code()    → picks 4 random colours
+                      - score_guess()      → counts exact matches
+                      - guess_code()       → runs 1 full game session
+
+dbconnect.py        SQLite integration:
+                      - Creates game.db + user_points table
+                      - save_result(name, points, won)
+                      - get_leaderboard()  → top scores
+
+game.db             Auto-created SQLite database (local file)
+
+ System
+       - After each guess, also tell player: 
+       how many colours are RIGHT but WRONG position
+       - Example: "2 correct position, 1 correct colour wrong spot"
+ Play again prompt
+       - After game ends, ask "Play again? (yes/no)"
+       - Loop without restarting the script
+ Timed mode 
+       - Use Python's time module to track how fast player wins
+       - Save time to database alongside points
+points - Point Will be added base on the guesses made

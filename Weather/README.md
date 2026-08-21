@@ -5,7 +5,7 @@ This repository contains beginner-friendly Python scripts to help you learn and 
 ## Projects Included
 
 ### 1. Weather Data Fetcher (`app.py`)
-Despite being in the "Crypto" folder, this script connects to the XWeather API to fetch real-time weather conditions for New York, NY, and stores that data in a local database.
+this script connects to the XWeather API to fetch real-time weather conditions for New York, NY, and stores that data in a local database.
 
 **Features:**
 - Makes HTTP requests to an external API using the `requests` library.
@@ -19,7 +19,7 @@ Despite being in the "Crypto" folder, this script connects to the XWeather API t
   - **Delete:** Deletes the record for New York.
 
 ### 2. Students Database (`text.py`)
-A simple script demonstrating how to create and manage a database for storing student information.
+<!-- A simple script demonstrating how to create and manage a database for storing student information. -->
 
 **Features:**
 - Connects to an SQLite database (`student.db`).

@@ -3,7 +3,7 @@ from services.finance_service import FinanceService
 from utils.logger import main_logger
 from utils.validator import validate_amount, validate_description, validate_date
 import questionary
-
+from utils.report import export_to_csv 
 logger = main_logger()
 
 
@@ -26,6 +26,7 @@ def main():
             "Filter Transactions",
             "Calculate Balance",
             "Delete Transaction",
+            "Export CSV",
             "Exit"
         ]
     ).ask()
@@ -75,6 +76,9 @@ def main():
     elif menu == "Calculate Balance":
         balance = finance.calculate_balance()
         print(f"\nBalance: ${balance:.2f}\n")
+    elif menu =="Export CSV":
+        transactions = finance.view_transactions()
+        export.export_to_csv(transactions)
     elif menu == "Delete Transaction":
         transaction_id = questionary.text("Enter transaction ID: ").ask()
         finance.delete_transaction(transaction_id)

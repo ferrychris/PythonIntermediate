@@ -76,9 +76,9 @@ def main():
     elif menu == "Calculate Balance":
         balance = finance.calculate_balance()
         print(f"\nBalance: ${balance:.2f}\n")
-    elif menu =="Export CSV":
+    elif menu == "Export CSV":
         transactions = finance.view_transactions()
-        export.export_to_csv(transactions)
+        export_to_csv(transactions)
     elif menu == "Delete Transaction":
         transaction_id = questionary.text("Enter transaction ID: ").ask()
         finance.delete_transaction(transaction_id)

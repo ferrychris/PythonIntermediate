@@ -75,4 +75,53 @@ class FinanceService:
             cat = row[1] if row[1] else "General"
             print(f"ID: {row[0]} | Category: {cat} | Amount: ${row[2]}")
         print("--------------\n")
-        return rows
+        return rows
+
+    def delete_transaction(self, transaction_id):
+        connection = self.database.connect()
+        cursor = connection.cursor()
+        cursor.execute("DELETE FROM transactions WHERE id = ?", (transaction_id,))
+        connection.commit()
+        connection.close()
+        print("Transaction deleted successfully!")
+
+    def calculate_income(self):
+        connection = self.database.connect()
+        cursor = connection.cursor()
+        cursor.execute("SELECT COALESCE(SUM(amount), 0) FROM transactions WHERE type = 'INCOME'")
+        val = cursor.fetchone()[0]
+        connection.close()
+        return val or 0.0
+
+    def calculate_expenses(self):
+        connection = self.database.connect()
+        cursor = connection.cursor()
+        cursor.execute("SELECT COALESCE(SUM(amount), 0) FROM transactions WHERE type = 'EXPENSE'")
+        val = cursor.fetchone()[0]
+        connection.close()
+        return val or 0.0
+
+    def calculate_balance(self):
+        return self.calculate_income() - self.calculate_expenses()
+
+    def filter(self, description=None):
+        connection = self.database.connect()
+        cursor = connection.cursor()
+        query = "SELECT id, type, amount, date, description FROM transactions WHERE 1=1"
+        params = []
+        if description:
+            query += " AND description LIKE ?"
+            params.append(f"%{description}%")
+        cursor.execute(query, params)
+        rows = cursor.fetchall()
+        connection.close()
+
+        if not rows:
+            print("\nNo matching transactions found.\n")
+            return rows
+
+        print("\n--- Filtered Transactions ---")
+        for row in rows:
+            print(f"ID: {row[0]} | Type: {row[1]} | Amount: ${row[2]} | Date: {row[3]} | Description: {row[4]}")
+        print("-----------------------------\n")
+        return rows

@@ -17,10 +17,12 @@ def export_to_csv(transactions):
 
         writer.writerow([
             "ID",
+            "user_id",
             "Type",
             "Amount",
             "Date",
-            "Description"
+            "Description",
+            "category_id"
         ])
 
         writer.writerows(transactions)

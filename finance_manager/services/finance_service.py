@@ -1,19 +1,21 @@
 from database.database import Database
-
+from utils.session import Session
+from utils.validator import validate_expenses
 
 class FinanceService:
     def __init__(self):
         self.database = Database()
-
+   
     def add_income(self, amount, date, description):
         connection = self.database.connect()
         cursor = connection.cursor()
+        user_id = Session.get("user_id")
 
         cursor.execute("""
             INSERT INTO transactions
-            (amount, type, date, description)
-            VALUES (?, ?, ?, ?)
-        """, (amount, "INCOME", date, description))
+            (user_id,amount, type, date, description)
+            VALUES (?, ?, ?, ?, ?)
+        """, (user_id, amount, "INCOME", date, description))
 
         connection.commit()
         connection.close()
@@ -23,12 +25,36 @@ class FinanceService:
     def add_expense(self, amount, date, description):
         connection = self.database.connect()
         cursor = connection.cursor()
+        user_id = Session.get("user_id")
+        try:
+            amount_input = questionary.text("Enter amount: ").ask()
+            amount = float(amount_input)
+            validate_amount(amount)
+            checked_amount = validate_expenses(amount)
+            if checked_amount is False:
+                print ("\n[Validation Error]You are not a thief!")
+                return
 
+            
+
+
+
+            today_str = datetime.now().strftime("%Y-%m-%d")
+            date = questionary.text("Enter date (YYYY-MM-DD): ", default=today_str).ask()
+            validate_date(date)
+
+            description = questionary.text("Enter description: ").ask()
+            validate_description(description)
+
+            finance.add_expense(amount, date, description)
+        except ValueError as e:
+            print(f"\n[Validation Error] {e}\n")
+            logger.error(f"Validation error when adding expense: {e}")
         cursor.execute("""
             INSERT INTO transactions
-            (amount, type, date, description)
-            VALUES (?, ?, ?, ?)
-        """, (amount, "EXPENSE", date, description))
+            (user_id,amount, type, date, description)
+            VALUES (?, ?, ?, ?, ?)
+        """, (user_id,checked_amount, "EXPENSE", date, description))
 
         connection.commit()
         connection.close()
@@ -38,10 +64,11 @@ class FinanceService:
     def view_transactions(self):
         connection = self.database.connect()
         cursor = connection.cursor()
+        user_id = Session.get("user_id")
 
         cursor.execute("""
-            SELECT id, type, amount, date, description FROM transactions
-        """)
+            SELECT id, type, amount, date, description FROM transactions WHERE user_id = ?
+        """, (user_id,))
         rows = cursor.fetchall()
         connection.close()
 
@@ -58,11 +85,12 @@ class FinanceService:
     def view_budget(self):
         connection = self.database.connect()
         cursor = connection.cursor()
-
+        user_id = Session.get("user_id")
         cursor.execute("""
             SELECT b.id, c.name, b.amount FROM budget b
             LEFT JOIN categories c ON b.category_id = c.id
-        """)
+            WHERE b.user_id = ?
+        """, (user_id,))
         rows = cursor.fetchall()
         connection.close()
 
@@ -80,7 +108,8 @@ class FinanceService:
     def delete_transaction(self, transaction_id):
         connection = self.database.connect()
         cursor = connection.cursor()
-        cursor.execute("DELETE FROM transactions WHERE id = ?", (transaction_id,))
+        user_id = Session.get("user_id")
+        cursor.execute("DELETE FROM transactions WHERE id = ? AND user_id = ?", (transaction_id, user_id))
         connection.commit()
         connection.close()
         print("Transaction deleted successfully!")
@@ -88,7 +117,8 @@ class FinanceService:
     def calculate_income(self):
         connection = self.database.connect()
         cursor = connection.cursor()
-        cursor.execute("SELECT COALESCE(SUM(amount), 0) FROM transactions WHERE type = 'INCOME'")
+        user_id = Session.get("user_id")
+        cursor.execute("SELECT COALESCE(SUM(amount), 0) FROM transactions WHERE type = 'INCOME' AND user_id = ?", (user_id,))
         val = cursor.fetchone()[0]
         connection.close()
         return val or 0.0
@@ -96,7 +126,8 @@ class FinanceService:
     def calculate_expenses(self):
         connection = self.database.connect()
         cursor = connection.cursor()
-        cursor.execute("SELECT COALESCE(SUM(amount), 0) FROM transactions WHERE type = 'EXPENSE'")
+        user_id = Session.get("user_id")
+        cursor.execute("SELECT COALESCE(SUM(amount), 0) FROM transactions WHERE type = 'EXPENSE' AND user_id = ?", (user_id,))
         val = cursor.fetchone()[0]
         connection.close()
         return val or 0.0
@@ -104,11 +135,21 @@ class FinanceService:
     def calculate_balance(self):
         return self.calculate_income() - self.calculate_expenses()
 
+    def set_budget(self, amount, category_id):
+        connection = self.database.connect()
+        cursor = connection.cursor()
+        user_id = Session.get("user_id")
+        cursor.execute("INSERT INTO budget (amount, category_id, user_id) VALUES (?, ?, ?)", (amount, category_id, user_id))
+        connection.commit()
+        connection.close()
+        print("Budget set successfully!")
+
     def filter(self, description=None):
         connection = self.database.connect()
         cursor = connection.cursor()
-        query = "SELECT id, type, amount, date, description FROM transactions WHERE 1=1"
-        params = []
+        user_id = Session.get("user_id")
+        query = "SELECT id, type, amount, date, description FROM transactions WHERE 1=1 AND user_id = ?"
+        params = [user_id]
         if description:
             query += " AND description LIKE ?"
             params.append(f"%{description}%")

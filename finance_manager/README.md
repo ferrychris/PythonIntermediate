@@ -6,35 +6,10 @@ Features
 
 You can add income and expenses with an amount, date, and description. The app automatically calculates total income, total expenses, and your current net balance. Transactions can be filtered and searched using keyword matching, and you can view a clean, formatted transaction list or delete records by ID. There's a budget overview showing categories and allocated funds, and you can export your full transaction history to exports/transactions.csv for spreadsheet analysis. Input is validated throughout: amounts must be greater than zero, dates must follow the YYYY-MM-DD format, and descriptions can't be empty. Application lifecycle events and errors are logged automatically to logs/app.log. Data is stored in SQLite using foreign keys, data constraints, and parameterized queries.
 
-Project structure
-
-finance_manager/
-    database/
-        __init__.py
-        database.py          SQLite database connection and table schema
-    models/
-        __init__.py
-        transaction.py       OOP data models (Transaction, Income, Expense)
-    services/
-        __init__.py
-        finance_service.py   Business logic: CRUD, balance calculations, filtering
-    utils/
-        __init__.py
-        logger.py            Application logging configuration
-        validator.py         Input validation functions (amount, date, description)
-        report.py            CSV report exporter
-    exports/                 Exported CSV transaction files
-        transactions.csv
-    logs/                    Application runtime logs
-        app.log
-    finance.db               SQLite database file
-    requirements.txt         Project dependencies
-    main.py                  Interactive CLI entry point
-    README.md                Project documentation
 
 Tech stack and concepts
 
-Written in Python 3.10+, using SQLite3 for storage and Questionary (https://github.com/tmbo/questionary) for interactive terminal prompts. The architecture follows object-oriented programming with a modular, service-oriented pattern. Logging and CSV export rely on Python's built-in logging and csv libraries.
+Written in Python 3.10+, using SQLite3 for storage and Questionary for interactive terminal prompts. The architecture follows object-oriented programming with a modular, service-oriented pattern. Logging and CSV export rely on Python's built-in logging and csv libraries.
 
 Installation and setup
 
@@ -65,7 +40,6 @@ pip install questionary
 
 How to run
 
-Make sure your virtual environment is active, then run:
 
 python main.py
 

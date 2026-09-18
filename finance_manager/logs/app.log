@@ -1,2 +1,52 @@
 2026-08-22 00:17:32,848 - finance-app - INFO - Application finished
 2026-08-22 00:33:25,469 - finance-app - INFO - Application finished
+2026-09-04 06:47:45,402 - finance-app - INFO - Application finished
+2026-09-04 06:48:47,123 - finance-app - INFO - Application finished
+2026-09-04 07:04:46,635 - finance-app - ERROR - Validation error when adding income: Date must be in YYYY-MM-DD format
+2026-09-04 07:04:46,635 - finance-app - INFO - Application finished
+2026-09-04 07:05:10,526 - finance-app - INFO - Application finished
+2026-09-04 07:05:23,085 - finance-app - INFO - Application finished
+2026-09-04 07:17:30,256 - finance-app - INFO - Application finished
+2026-09-04 07:19:42,684 - finance-app - INFO - Application finished
+2026-09-12 13:06:52,572 - finance-app - INFO - Application finished
+2026-09-17 17:20:44,302 - finance-app - INFO - Application finished
+2026-09-17 17:21:14,175 - finance-app - ERROR - Validation error when adding expense: Date must be in YYYY-MM-DD format
+2026-09-17 17:21:14,176 - finance-app - INFO - Application finished
+2026-09-18 05:31:39,181 - finance-app - INFO - Application finished
+2026-09-18 05:37:06,241 - finance-app - INFO - Application finished
+2026-09-18 05:37:39,514 - finance-app - INFO - Application finished
+2026-09-18 05:40:31,624 - finance-app - INFO - Application finished
+2026-09-18 05:40:44,613 - finance-app - INFO - Application finished
+2026-09-18 05:40:53,090 - finance-app - INFO - Application finished
+2026-09-18 05:54:31,160 - finance-app - WARNING - Invalid choice: None
+2026-09-18 05:54:31,160 - finance-app - INFO - Application finished
+2026-09-18 07:35:23,982 - finance-app - ERROR - Validation error when adding expense: Description cannot be empty
+2026-09-18 07:35:23,983 - finance-app - INFO - Application finished
+2026-09-18 07:36:09,412 - finance-app - WARNING - Invalid choice: None
+2026-09-18 07:36:09,412 - finance-app - INFO - Application finished
+2026-09-18 07:36:12,446 - finance-app - WARNING - Invalid choice: Set Budget
+2026-09-18 07:36:12,446 - finance-app - INFO - Application finished
+2026-09-18 07:49:29,160 - finance-app - WARNING - Invalid choice: Set Budget
+2026-09-18 07:49:29,161 - finance-app - INFO - Application finished
+2026-09-18 07:49:35,521 - finance-app - WARNING - Invalid choice: Set Budget
+2026-09-18 07:49:35,521 - finance-app - INFO - Application finished
+2026-09-18 08:31:59,529 - finance-app - WARNING - Invalid choice: None
+2026-09-18 08:31:59,530 - finance-app - INFO - Application finished
+2026-09-18 09:02:04,156 - finance-app - INFO - Application finished
+2026-09-18 09:12:36,774 - finance-app - ERROR - Validation error when setting budget: na thief u be! Spend From what u have!
+2026-09-18 09:12:36,774 - finance-app - INFO - Application finished
+2026-09-18 09:13:04,393 - finance-app - INFO - Application finished
+2026-09-18 09:25:34,178 - finance-app - WARNING - Invalid choice: None
+2026-09-18 09:25:34,179 - finance-app - INFO - Application finished
+2026-09-18 09:25:58,651 - finance-app - INFO - Application finished
+2026-09-18 09:27:15,355 - finance-app - ERROR - Validation error when adding expense: Description cannot be empty
+2026-09-18 09:27:15,355 - finance-app - INFO - Application finished
+2026-09-18 09:32:48,903 - finance-app - ERROR - Validation error when adding expense: Description cannot be empty
+2026-09-18 09:32:48,904 - finance-app - INFO - Application finished
+2026-09-18 09:42:34,072 - finance-app - ERROR - Validation error when adding expense: Date must be in YYYY-MM-DD format
+2026-09-18 09:42:34,072 - finance-app - INFO - Application finished
+2026-09-18 09:42:48,384 - finance-app - ERROR - Validation error when adding expense: na thief u be! Spend From what u have!
+2026-09-18 09:42:48,384 - finance-app - INFO - Application finished
+2026-09-18 10:14:41,900 - finance-app - WARNING - Invalid choice: None
+2026-09-18 10:14:41,900 - finance-app - INFO - Application finished
+2026-09-18 10:14:55,873 - finance-app - INFO - Application finished
